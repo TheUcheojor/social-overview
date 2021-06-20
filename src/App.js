@@ -1,7 +1,19 @@
 import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
 function App() {
+
+  const [ test, setTest] = useState("")
+
+
+  useEffect(() => {
+    fetch("/test").then(res => res.json()).then(data => {
+      setTest(data.message);
+    })
+  }, [])
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +29,8 @@ function App() {
         >
           Learn React
         </a>
+
+        <p>This is a test: {test}</p>
       </header>
     </div>
   );
